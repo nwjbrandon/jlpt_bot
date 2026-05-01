@@ -161,7 +161,7 @@ def _resolve_csv_files(csv_source: str) -> List[Path]:
             return csv_files
         raise ValueError(f"ディレクトリにCSVが見つかりません: {source}")
 
-    raise ValueError(f"PHRASE_CSV_PATHはCSVファイルかディレクトリを指定してください: {source}")
+    raise ValueError(f"CSV_PATHはCSVファイルかディレクトリを指定してください: {source}")
 
 
 def load_rows(csv_path: str) -> List[PhraseRow]:
@@ -630,7 +630,7 @@ def main() -> None:
 
     channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", "").strip()
     channel_secret = os.getenv("LINE_CHANNEL_SECRET", "").strip()
-    csv_path = os.getenv("PHRASE_CSV_PATH", "./english_japanese_sentences.csv").strip()
+    csv_path = os.getenv("CSV_PATH", "./english_japanese_sentences.csv").strip()
     default_mode = os.getenv("PHRASE_QUIZ_MODE", MODE_EN_TO_JA).strip() or MODE_EN_TO_JA
     host = os.getenv("LINE_HOST", "0.0.0.0").strip() or "0.0.0.0"
     port = int(os.getenv("LINE_PORT", "8001"))
@@ -640,7 +640,7 @@ def main() -> None:
     if not channel_secret:
         raise RuntimeError("LINE_CHANNEL_SECRET が設定されていません。")
     if not csv_path:
-        raise RuntimeError("PHRASE_CSV_PATH が設定されていません。")
+        raise RuntimeError("CSV_PATH が設定されていません。")
     if default_mode not in VALID_MODES:
         raise RuntimeError(f"PHRASE_QUIZ_MODE は次のいずれかを指定してください: {', '.join(sorted(VALID_MODES))}")
 
