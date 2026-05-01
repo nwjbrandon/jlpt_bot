@@ -641,6 +641,19 @@ class LineWebhookHandler(BaseHTTPRequestHandler):
     runtime: BotRuntime
     channel_secret: str
 
+    def do_GET(self) -> None:
+        if self.path != "/health":
+            self.send_response(HTTPStatus.NOT_FOUND)
+            self.end_headers()
+            return
+
+        body = json.dumps({"status": "ok"}).encode("utf-8")
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_POST(self) -> None:
         if self.path != "/callback":
             self.send_response(HTTPStatus.NOT_FOUND)
