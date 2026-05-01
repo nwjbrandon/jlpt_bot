@@ -388,16 +388,7 @@ def mode_name(mode: str) -> str:
 def build_welcome_message(current_mode: str) -> Dict[str, Any]:
     return {
         "type": "text",
-        "text": (
-            "フレーズ学習クイズへようこそ!\n\n"
-            "コマンド:\n"
-            "/quiz - 4択クイズを開始\n"
-            "/mode - 出題モードを変更\n"
-            "/reset - スコアと進捗をリセット\n"
-            "/stats - 現在の成績を表示\n"
-            "/help - 使い方を表示\n\n"
-            f"現在のモード: {mode_name(current_mode)}"
-        ),
+        "text": (f"フレーズ学習クイズへようこそ!\n\nコマンド:\n/quiz - 4択クイズを開始\n/mode - 出題モードを変更\n/reset - スコアと進捗をリセット\n/stats - 現在の成績を表示\n/help - 使い方を表示\n\n現在のモード: {mode_name(current_mode)}"),
         "quickReply": {
             "items": [
                 quick_reply_message("クイズ", "/quiz"),
@@ -476,14 +467,7 @@ class BotRuntime:
             return [
                 {
                     "type": "text",
-                    "text": (
-                        "使い方:\n"
-                        "・/quiz で4択問題を出題します。\n"
-                        "・/mode で出題方向を切り替えます。\n"
-                        "・間違えた問題は数問後に復習として再出題されます。\n"
-                        "・/stats で成績を確認できます。\n"
-                        "・/reset で成績と進捗をリセットします。"
-                    ),
+                    "text": ("使い方:\n・/quiz で4択問題を出題します。\n・/mode で出題方向を切り替えます。\n・間違えた問題は数問後に復習として再出題されます。\n・/stats で成績を確認できます。\n・/reset で成績と進捗をリセットします。"),
                 }
             ]
 
@@ -499,12 +483,7 @@ class BotRuntime:
             return [
                 {
                     "type": "text",
-                    "text": (
-                        "成績\n"
-                        f"正解数: {stats['correct']}\n"
-                        f"回答数: {stats['total']}\n"
-                        f"正答率: {accuracy:.1f}%"
-                    ),
+                    "text": (f"成績\n正解数: {stats['correct']}\n回答数: {stats['total']}\n正答率: {accuracy:.1f}%"),
                 }
             ]
 

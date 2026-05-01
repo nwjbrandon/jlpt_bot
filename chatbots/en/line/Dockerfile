@@ -3,7 +3,7 @@ FROM python:3.14.4-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    APP_FILE=main_line.py
+    APP_FILE=main.py
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ RUN apt-get update \
     && curl -LsSf https://astral.sh/uv/install.sh | sh \
     && mv /root/.local/bin/uv /usr/local/bin/uv
 
-COPY pyproject.toml uv.lock main_line.py ./
+COPY pyproject.toml uv.lock main.py ./
 RUN uv sync --frozen --no-dev --no-install-project
 
 COPY data/ ./data

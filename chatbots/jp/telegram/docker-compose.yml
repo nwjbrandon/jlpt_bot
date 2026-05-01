@@ -1,10 +1,10 @@
 services:
-  jlpt-bot:
+  jp-telegram-bot:
     build:
       context: .
       dockerfile: Dockerfile
-    image: jlpt-bot:latest
-    container_name: jlpt-bot
+    image: jp-telegram-bot:latest
+    container_name: jp-telegram-bot
     restart: unless-stopped
     env_file:
       - .env
